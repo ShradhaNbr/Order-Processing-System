@@ -35,6 +35,11 @@ class Order(BaseModel):
 class OrderStatusResponse(BaseModel):
     order_id:int
     status:str
+  
+@app.get("/")
+def read_root():
+    return {"message": "Welcome to Order Processing API"}
+
 
 @app.post('/order')
 def create_order(order: Order, background_tasks: BackgroundTasks):
