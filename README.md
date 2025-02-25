@@ -1,7 +1,7 @@
 # Order-Processing-System
 
 1. Create a order
-    POST - http://127.0.0.1:8000/order
+    POST - /order
     payload - {
         "order_id": 5,
         "user_id": 123,
