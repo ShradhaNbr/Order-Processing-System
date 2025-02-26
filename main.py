@@ -1,6 +1,6 @@
 from fastapi import FastAPI, BackgroundTasks, HTTPException
 from pydantic import BaseModel
-import sqlite3  #inbuilt with python like sql or postgresql
+import sqlite3  
 import queue
 from typing import List
 import time
@@ -8,9 +8,8 @@ import json
 
 app = FastAPI()
 
-order_queue = queue.Queue() # in built with python like celery
+order_queue = queue.Queue() 
 
-# connection with sqllite same thread coz multiple threads are used since we need to queue asynchrously so same connection for same connection disables restriction
 conn = sqlite3.connect("orders.db", check_same_thread=False)
 cursor = conn.cursor()
 cursor.execute("""CREATE TABLE IF NOT EXISTS orders (
@@ -24,7 +23,6 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS orders (
                """)
 conn.commit()
 
-#Basemodel is class from pydantic to help define and validate data structures in Fast API
 
 class Order(BaseModel):
     order_id:int
